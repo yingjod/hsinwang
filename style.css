@@ -158,4 +158,106 @@ header{
   color:var(--main-color)
 }
 
+.order-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap:1rem;
+  margin-top: 5rem;
+}
+
+.order-container .box{
+  flex:1 1 10rem;
+  background: var(--main-color);
+  padding: 20px;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+  border-radius: 0.5rem;
+}
+
+.order-container .box .box-img{
+  width: 200px;
+  height: 200px;
+  border-radius: 0.5rem;
+}
+
+.order-container .box .box-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.stars{
+  margin: 1rem 0 0.1rem;
+}
+
+.order-container .box .stars .bx{
+  color: #ebdbc8;
+}
+
+.order-container .box .stars .h2{
+  color: #ebdbc8;
+  font-size:1.2rem ;
+}
+
+.order-container .box .stars span{
+  color: #ebdbc8;
+  font-size:1.4rem ;
+  font-weight: 500;
+  margin: 0.2rem 0 0.5rem;
+}
+
+.box .btn{
+  margin-top: 20px;
+  border: 2px solid #ebdbc8;
+  color:#ebdbc8 ;
+}
+
+
+.box .btn:hover{
+background: #ebdbc8;
+color: var(--second-color);
+}
+
+.order{
+  margin-bottom: 200px;
+}
+
+.store-container{
+  width: 100%;
+  min-height:70vh;
+  display:flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap:1rem;
+  }
+
+.store-container .store-text{
+  flex: 1 1 17rem;
+  text-align: center;
+}
+  
+.store-container .store-map{
+  flex: 1 1 17rem ;
+}
+
+.store-text span{
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight:600;
+  color: var(--second-color);
+}
+
+.store-container h2{
+  color: var(--second-color);
+}
+
+.store-container h3{
+  margin: 15px;
+  color: var(--second-color);
+  font-weight: 300;
+}
 
