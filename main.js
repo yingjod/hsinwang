@@ -5,8 +5,10 @@ const closingMinute = 30; // 营业结束分钟：30分钟
 
 // 获取当前时间（台湾时区 UTC+8）
 const options = { timeZone: 'Asia/Taipei', hour: 'numeric', minute: 'numeric' };
-const currentDate = new Date().toLocaleString('en-US', options);
-const [currentHour, currentMinute] = currentDate.split(':').map(Number);
+const taiwanDate = new Date().toLocaleString('en-US', options);
+const currentHour = taiwanDate.getHours();  // 获取小时
+const currentMinute = taiwanDate.getMinutes();  // 获取分钟
+
 
 // 获取当前星期几（0 是周日，1 是周一，以此类推）
 const currentDay = new Date().toLocaleString('en-US', { timeZone: 'Asia/Taipei', weekday: 'long' });
@@ -34,3 +36,5 @@ if (isOpen) {
 
 console.log(isOpen ? "Open" : "Closed"); // 在控制台输出状态
 console.log("Current Day:", currentDay); // 输出当前星期几以进行调试
+console.log('Current time in Taiwan! (HH:MM):', currentHour + ':' + currentMinute);
+
