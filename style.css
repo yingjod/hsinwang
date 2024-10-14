@@ -100,7 +100,7 @@ header{
 }
 
 .home-text{
-  flex: 1 1 17 rem;
+  flex: 1 1 17rem;
 }
 
 .home-img{
@@ -277,5 +277,49 @@ color: var(--second-color);
 #store-status {
   font-size: 1.2rem;
 }
+
+.about-container{
+  width: 100%;
+  min-height:50vh;
+  display:flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap:1rem;
+}
+
+.about-container .about-text{
+  flex: 1 1 45%;
+}
+
+.about-container .about-img-1 {
+  flex: 1 1 45%;
+  display: flex;
+  justify-content: center; /* Centers the image within its container */
+}
+
+.about-container .about-img-1 img {
+  max-width: 100% ;
+}
+
+.about-text h3{
+  margin-right: 20px;
+  text-align: center;
+}
+
+.about-text-1 {
+  margin-top: 25px;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.about-text-1 h3{
+  margin-top:20px;
+  text-align: center;
+  align-items: center;
+
+}
+
 
 
