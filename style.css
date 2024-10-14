@@ -285,6 +285,7 @@ color: var(--second-color);
   flex-wrap: wrap;
   align-items: center;
   gap:1rem;
+  color: var(--second-color)
 }
 
 .about-container .about-text{
@@ -292,22 +293,24 @@ color: var(--second-color);
 }
 
 .about-container .about-img-1 {
-  flex: 1 1 45%;
+  flex: 1 1 35%;
   display: flex;
-  justify-content: center; /* Centers the image within its container */
+  justify-content: center;
 }
 
 .about-container .about-img-1 img {
   max-width: 100% ;
+  border-radius: 2rem;
 }
 
 .about-text h3{
+  margin-top:20px;
   margin-right: 20px;
   text-align: center;
 }
 
 .about-text-1 {
-  margin-top: 25px;
+  margin-top: 30px;
   width: 100%;
   text-align: center;
   align-items: center;
@@ -315,6 +318,27 @@ color: var(--second-color);
 }
 
 .about-text-1 h3{
+  margin-top:20px;
+  text-align: center;
+  align-items: center;
+}
+
+.about-container .about-text-2{
+  margin-top:50px;
+  flex: 1 1 45%;
+}
+
+.about-container .about-img-2 {
+  margin-top:50px;
+  flex: 1 1 35%;
+}
+
+.about-container .about-img-2 img {
+  max-width: 100% ;
+  border-radius: 2rem;
+}
+
+.about-text-2 h3{
   margin-top:20px;
   text-align: center;
   align-items: center;
