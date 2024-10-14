@@ -37,7 +37,7 @@ header{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background:white ;
+  background:#fff ;
   box-shadow: 0 4px 41px rgb(14 55 54 / 14%);
   padding: 15px 10%;
   transition: 0.2s ;
@@ -226,6 +226,10 @@ color: var(--second-color);
   margin-bottom: 200px;
 }
 
+.store{
+  background-color: #ebdbc8;
+}
+
 .store-container{
   width: 100%;
   min-height:70vh;
@@ -278,7 +282,12 @@ color: var(--second-color);
   font-size: 1.2rem;
 }
 
+.about{
+  margin-top: 50px;
+}
+
 .about-container{
+  margin-top: 5rem;
   width: 100%;
   min-height:50vh;
   display:flex;
@@ -298,7 +307,7 @@ color: var(--second-color);
   justify-content: center;
 }
 
-.about-container .about-img-1 img {
+.about-container img {
   max-width: 100% ;
   border-radius: 2rem;
 }
@@ -333,11 +342,6 @@ color: var(--second-color);
   flex: 1 1 35%;
 }
 
-.about-container .about-img-2 img {
-  max-width: 100% ;
-  border-radius: 2rem;
-}
-
 .about-text-2 h3{
   margin-top:20px;
   text-align: center;
@@ -345,5 +349,44 @@ color: var(--second-color);
 
 }
 
+.contact{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #eeee;
+}
 
+.social a{
+  font-size: 27px;
+  margin: 0.5rem;
+}
 
+.social a .bx{
+  padding: 5px;
+  color: #fff;
+  background:#000000 ;
+  border-radius: 50%;
+}
+
+.social a .bx:hover{
+  background: var(--main-color);
+}
+
+.links{
+  margin: 1rem 0 1rem ;
+}
+
+.links a{
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--second-color);
+  padding: 1rem;
+}
+
+.links a:hover{
+  color: var(--main-color);
+}
+
+.contact p{
+  text-align: center;
+}
