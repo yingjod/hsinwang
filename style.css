@@ -390,3 +390,8 @@ color: var(--second-color);
 .contact p{
   text-align: center;
 }
+
+.develope{
+  margin-top: 100px;
+  color: #C56E33;
+}
