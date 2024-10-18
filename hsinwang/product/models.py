@@ -10,7 +10,7 @@ class Cake(models.Model):
 
 class CakeSize(models.Model):
     cake = models.ForeignKey(Cake, on_delete=models.CASCADE, related_name='sizes')  
-
+    size = models.CharField(max_length=50)
     base_price = models.DecimalField(max_digits=10, decimal_places=2) 
 
     def __str__(self):
