@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Cake, CakeSize, FlavorOption
+from .models import Cake, Size, Filling
 
 admin.site.register(Cake)
-admin.site.register(CakeSize)
-admin.site.register(FlavorOption)
+admin.site.register(Size)
+admin.site.register(Filling)
