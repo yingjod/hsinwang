@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path');
 
 module.exports = {
   entry: './src/index.js',  // 指定你的進入點文件
@@ -15,6 +15,10 @@ module.exports = {
         use: {
           loader: 'babel-loader', // 使用 babel-loader 來處理 JavaScript 文件
         },
+      },
+      {
+        test: /\.css$/,  // 處理 .css 檔案
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
