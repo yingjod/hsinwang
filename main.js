@@ -7,8 +7,6 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
 
 
-
-
 const openingHour = 11;  
 const closingHour = 19; 
 const closingMinute = 30; 

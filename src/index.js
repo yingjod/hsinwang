@@ -1,9 +1,17 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App' // 確保 App.js 在 src 資料夾內
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import StoreStatus from './StoreStatus'; // 引入 StoreStatus 組件
+import InfoAccordion from './InfoAccordion'; // 引入 InfoAccordion 組件
 
+// 渲染 StoreStatus 到指定的掛載點
+const storeStatusRoot = document.getElementById('store-status-root');
+if (storeStatusRoot) {
+  ReactDOM.render(<StoreStatus />, storeStatusRoot);
+}
 
-ReactDOM.render(
-    <App />,
-    document.getElementById('root') // 確保這個 id 與 index.html 中的一致
-);
+// 渲染 InfoAccordion 到指定的掛載點
+const infoAccordionRoot = document.getElementById('info-accordion-root');
+if (infoAccordionRoot) {
+  ReactDOM.render(<InfoAccordion />, infoAccordionRoot);
+}

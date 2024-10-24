@@ -1,9 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Accordion from 'react-bootstrap/Accordion'
-import 'bootstrap/dist/css/bootstrap.min.css'
+// InfoAccordion.js
+import React from 'react';
+import Accordion from 'react-bootstrap/Accordion';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App () {
+function InfoAccordion() {
   return (
     <Accordion defaultActiveKey="0" flush>
       <Accordion.Item eventKey="0">
@@ -31,9 +31,7 @@ function App () {
         </Accordion.Body>
       </Accordion.Item>
     </Accordion>
-  )
+  );
 }
 
-export default App
-
-
+export default InfoAccordion;
