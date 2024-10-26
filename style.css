@@ -80,6 +80,7 @@ header{
 }
 
 .home{
+  scroll-margin-top: 80px;
   border: 1px solid var(--main-color);
   width: 100%;
   min-height:70vh;
@@ -162,64 +163,50 @@ header{
   color:var(--main-color)
 }
 
-.order-container{
+.order-container {
   display: flex;
-  flex-wrap: wrap;
-  gap:1rem;
-  margin-top: 5rem;
+  overflow-x: auto; /* 允許水平滾動 */
+  gap: 26px; /* 卡片之間的間距 */
+  margin-top: 5rem; /* 容器上方的間距 */
+  scroll-snap-type: x mandatory; /* 確保卡片在滾動時對齊 */
 }
 
-.order-container .box{
-  flex:1 1 10rem;
-  background: var(--main-color);
-  padding: 20px;
+.box {
+  flex: 0 0 28%; /* 每個卡片的最小寬度設為300px，可以調整這個值來改變卡片寬度 */
+  background: var(--main-color); /* 卡片背景色 */
+  padding: 20px; /* 卡片內部間距 */
   display: flex;
-  text-align: center;
   flex-direction: column;
-  align-items: center;
-  margin-top: 3rem;
+  align-items: center; /* 垂直居中 */
+  text-align: center; /* 文字居中 */
+  border-radius: 0.5rem; /* 圓角 */
+  scroll-snap-align: start; /* 滾動時對齊到卡片開始位置 */
+}
+
+.box-img{
+  width: 210px;
+  height: 210px;
   border-radius: 0.5rem;
 }
 
-.order-container .box .box-img{
-  width: 200px;
-  height: 200px;
-  border-radius: 0.5rem;
-}
-
-.order-container .box .box-img img{
+.box-img img{
   width: 100%;
   height: 100%;
   object-fit: contain;
   object-position: center;
 }
 
-.stars{
-  margin: 1rem 0 0.1rem;
+.box h2{
+  margin-top: 20px;
+  font-size: 20px;
 }
 
-.order-container .box .stars .bx{
-  color: #ebdbc8;
-}
-
-.order-container .box .stars .h2{
-  color: #ebdbc8;
-  font-size:1.2rem ;
-}
-
-.order-container .box .stars span{
-  color: #ebdbc8;
-  font-size:1.4rem ;
-  font-weight: 500;
-  margin: 0.2rem 0 0.5rem;
-}
 
 .box .btn{
   margin-top: 20px;
   border: 2px solid #ebdbc8;
   color:#ebdbc8 ;
 }
-
 
 .box .btn:hover{
 background: #ebdbc8;
@@ -228,10 +215,12 @@ color: var(--second-color);
 
 .order{
   margin-bottom: 200px;
+  scroll-margin-top: 80px;
 }
 
 .store{
   background-color: #ebdbc8;
+  scroll-margin-top: 50px;
 }
 
 .store-container{
@@ -290,6 +279,7 @@ color: var(--second-color);
 
 .about{
   margin-top: 50px;
+  scroll-margin-top: 80px;
 }
 
 .about-container{
@@ -411,6 +401,7 @@ color: var(--second-color);
 
 .QA{
   background-color: #ebdbc8;
+  scroll-margin-top: 50px;
 }
 
 #info-accordion-root {
@@ -430,3 +421,8 @@ color: var(--second-color);
   color: var(--second-color); /* 更改字體顏色 */
   font-size: 15px;
 }
+
+.card-img-top{
+  width: 50%;
+}
+

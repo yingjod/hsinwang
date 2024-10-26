@@ -6,11 +6,11 @@ import InfoAccordion from './InfoAccordion' // Import InfoAccordion component
 // Render StoreStatus to the specified mount point
 const storeStatusRoot = document.getElementById('store-status-root')
 if (storeStatusRoot) {
-  createRoot(storeStatusRoot).render(<StoreStatus />) // Correct usage of createRoot
+  createRoot(storeStatusRoot).render(<StoreStatus />) 
 }
 
 // Render InfoAccordion to the specified mount point
 const infoAccordionRoot = document.getElementById('info-accordion-root')
 if (infoAccordionRoot) {
-  createRoot(infoAccordionRoot).render(<InfoAccordion />) // Correct usage of createRoot
+  createRoot(infoAccordionRoot).render(<InfoAccordion />) 
 }
