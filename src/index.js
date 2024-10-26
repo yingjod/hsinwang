@@ -1,17 +1,16 @@
-// index.js
-import React from 'react';
-import ReactDOM from 'react-dom';
-import StoreStatus from './StoreStatus'; // 引入 StoreStatus 組件
-import InfoAccordion from './InfoAccordion'; // 引入 InfoAccordion 組件
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import StoreStatus from './StoreStatus'// Import StoreStatus component
+import InfoAccordion from './InfoAccordion' // Import InfoAccordion component
 
-// 渲染 StoreStatus 到指定的掛載點
-const storeStatusRoot = document.getElementById('store-status-root');
+// Render StoreStatus to the specified mount point
+const storeStatusRoot = document.getElementById('store-status-root')
 if (storeStatusRoot) {
-  ReactDOM.render(<StoreStatus />, storeStatusRoot);
+  createRoot(storeStatusRoot).render(<StoreStatus />) // Correct usage of createRoot
 }
 
-// 渲染 InfoAccordion 到指定的掛載點
-const infoAccordionRoot = document.getElementById('info-accordion-root');
+// Render InfoAccordion to the specified mount point
+const infoAccordionRoot = document.getElementById('info-accordion-root')
 if (infoAccordionRoot) {
-  ReactDOM.render(<InfoAccordion />, infoAccordionRoot);
+  createRoot(infoAccordionRoot).render(<InfoAccordion />) // Correct usage of createRoot
 }

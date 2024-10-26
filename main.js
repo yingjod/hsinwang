@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './src'; // 導入 App 組件
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './src' // 導入 App 組件
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'))
 
 
 
