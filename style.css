@@ -399,6 +399,10 @@ color: var(--second-color);
   text-align: center;
 }
 
+.contact img{
+  width: 50px;
+}
+
 .develope{
   margin-top: 100px;
   color: #C56E33;
@@ -418,10 +422,11 @@ color: var(--second-color);
   width: 80%;
 }
 
-.accordion-header {
-  color: grey!important; /* 更改字體顏色 */
+.accordion-button {
+  color: rgb(101, 101, 101); /* 更改字體顏色 */
 }
 
 .accordion-body {
   color: var(--second-color); /* 更改字體顏色 */
+  font-size: 15px;
 }

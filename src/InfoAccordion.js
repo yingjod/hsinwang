@@ -2,6 +2,8 @@
 import React , { useState, useEffect } from 'react'
 import Accordion from 'react-bootstrap/Accordion'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import '../style.css' // Adjust the path as necessary
+
 
 function InfoAccordion() {
 
@@ -35,15 +37,15 @@ function InfoAccordion() {
     <Accordion defaultActiveKey="0" flush>
       {questions.map((question, index) => (
         <Accordion.Item eventKey={index.toString()} key={question.id}>
-          <Accordion.Header className="accordion-header">{question.id}. {question.name}</Accordion.Header>
+          <Accordion.Header >Ｑ. {question.name}</Accordion.Header>
           <Accordion.Body className="accordion-body">
             {question.answer} {/* Adjust 'body' if your data contains different content */}
           </Accordion.Body>
         </Accordion.Item>
       ))}
     </Accordion>
-  );
+  )
 }
 
 
-export default InfoAccordion;
+export default InfoAccordion
