@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -132,3 +133,6 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",  # Allow your frontend to access the API
     # Add other origins as needed
 ]
+
+MEDIA_URL = '/cakes/'
+

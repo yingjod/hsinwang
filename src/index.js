@@ -2,6 +2,7 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import StoreStatus from './StoreStatus'// Import StoreStatus component
 import InfoAccordion from './InfoAccordion' // Import InfoAccordion component
+import OrderSection from './OrderSection' // Import InfoAccordion component
 
 // Render StoreStatus to the specified mount point
 const storeStatusRoot = document.getElementById('store-status-root')
@@ -14,3 +15,10 @@ const infoAccordionRoot = document.getElementById('info-accordion-root')
 if (infoAccordionRoot) {
   createRoot(infoAccordionRoot).render(<InfoAccordion />) 
 }
+
+// Render InfoAccordion to the specified mount point
+const OrderSectionRoot = document.getElementById('order-section-root')
+if (OrderSectionRoot) {
+  createRoot(OrderSectionRoot).render(<OrderSection />) 
+}
+
