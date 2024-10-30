@@ -39,7 +39,6 @@ function OrderSection() {
           </div>
           <h2>{cake.name}</h2>
 
-          <a href="#" className="btn">立即訂購</a>
         </div>
       ))}
     </div>
