@@ -92,7 +92,7 @@ header{
 }
 
 .home-line{
-  margin: 100px 200px 100px 200px;
+  margin: 100px auto; 
   padding: 20px;
   border: 2px solid var(--second-color);
   width: 80%;
@@ -105,11 +105,13 @@ header{
 }
 
 .home-text{
-  flex: 1 1 17rem;
+  flex: 1 1 10rem;
 }
 
 .home-img{
-  flex: 1 1 17rem ;
+  flex: 1 1 35rem; /* Increase the base width */
+  max-width: 100%; /* Ensure image can expand to its container */
+  height: auto; 
 }
 
 
