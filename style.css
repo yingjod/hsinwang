@@ -95,7 +95,7 @@ header{
   margin: 100px auto; 
   padding: 20px;
   border: 2px solid var(--second-color);
-  width: 80%;
+  width: 70%;
   min-height:70vh;
   display:flex;
   flex-wrap: wrap;
@@ -105,15 +105,14 @@ header{
 }
 
 .home-text{
-  flex: 1 1 10rem;
+  flex: 1 1 50％;
 }
 
 .home-img{
-  flex: 1 1 35rem; /* Increase the base width */
+  flex: 1 1 60%; /* Increase the base width */
   max-width: 100%; /* Ensure image can expand to its container */
   height: auto; 
 }
-
 
 .home-text span{
   font-size: 1rem;
