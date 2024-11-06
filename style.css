@@ -86,16 +86,16 @@ header{
   min-height:70vh;
   display:flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items:normal;
   background: #ebdbc8;
   gap:1rem;
 }
 
 .home-line{
-  margin: 100px auto; 
+  margin: 100px auto;
   padding: 20px;
   border: 2px solid var(--second-color);
-  width: 70%;
+  width: 60%;
   min-height:70vh;
   display:flex;
   flex-wrap: wrap;
@@ -105,13 +105,20 @@ header{
 }
 
 .home-text{
-  flex: 1 1 50％;
+  flex: 1 1 50%;
 }
 
+.home-text img{
+  max-width: 200px;
+  margin-left: 0;
+}
+
+
 .home-img{
-  flex: 1 1 60%; /* Increase the base width */
+  flex: 1 1 50%; /* Increase the base width */
   max-width: 100%; /* Ensure image can expand to its container */
   height: auto; 
+  
 }
 
 .home-text span{

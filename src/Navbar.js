@@ -4,7 +4,7 @@ import React from 'react'
 const Navbar = () => {
   return (
     <header>
-      <a href="/#home" className="logo"> <img src="img/logo-trans.png" alt=""></img> </a>
+      <a href="/#home" className="logo"> <img src="img/欣旺-removebg-preview (1).png" alt=""></img> </a>
       <div className="bx bx-menu" id="menu-icon"></div>
 
       <ul className="navbar">
