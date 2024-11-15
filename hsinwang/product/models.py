@@ -43,3 +43,12 @@ class Cake(models.Model):
 
     def __str__(self):
         return self.name
+    
+# 麵包甜點模型
+class Breads(models.Model):
+    name = models.CharField(max_length=100)  
+    description = models.TextField()  
+    image = models.ImageField(upload_to='breads/', blank=True, null=True)
+
+    def __str__(self):
+        return self.name

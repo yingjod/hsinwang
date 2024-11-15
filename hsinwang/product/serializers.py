@@ -1,6 +1,6 @@
 # Product/serializers.py
 from rest_framework import serializers
-from .models import Cake, Sizes, Filling, Base, Acc
+from .models import Cake, Sizes, Filling, Base, Acc, Breads
 
 class CakeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -28,4 +28,9 @@ class BaseSerializer(serializers.ModelSerializer):
 class AccSerializer(serializers.ModelSerializer):
     class Meta:
         model = Acc
+        fields = '__all__'  # Use all fields or specify them as a list ['id', 'name', ...]
+
+class BreadsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Breads
         fields = '__all__'  # Use all fields or specify them as a list ['id', 'name', ...]

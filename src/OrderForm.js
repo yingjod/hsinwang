@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -63,21 +61,22 @@ function OrderForm() {
 
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/product/acc/')
-      .then((response) => {
-        if (!response.ok) throw new Error('Network response was not ok')
-        return response.json()
-      })
-      .then((data) => {
-        console.log("Acc data fetched:", data)
-        setAcc(data)
-        setLoading(false)
-      })
-      .catch((error) => {
-        setError(error)
-        setLoading(false)
-      })
-  }, [])
+    if (loading) {
+      fetch('http://127.0.0.1:8000/api/product/acc/')
+        .then((response) => {
+          if (!response.ok) throw new Error('Network response was not ok');
+          return response.json()
+        })
+        .then((data) => {
+          setAcc(data)
+          setLoading(false) // 設置為 false，避免重複請求
+        })
+        .catch((error) => {
+          setError(error)
+          setLoading(false) // 即使發生錯誤，也要設置為 false
+        })
+    }
+  }, [loading])  // 依賴項的設置要小心，避免無窮循環
 
 
   const handleCakeChange = (index, event) => {

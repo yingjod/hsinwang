@@ -27,22 +27,24 @@ function ProdectPage() {
       })
   }, [])
 
+
+
   if (loading) return <div>Loading...</div>
   if (error) return <div>Error: {error.message}</div>
 
   return (
-<div className='product-page'>
-    <div className="product-container">
-      {cakes.map((cake) => (
-        <div className="box" key={cake.id}>
-          <div className="box-img">
-            <img src={cake.image} alt={cake.name} />
-          </div>
-          <h2>{cake.name}</h2>
+    <div className='product-page'>
+      <div className="product-container">
+        {cakes.map((cake) => (
+          <div className="box" key={cake.id}>
+            <div className="box-img">
+              <img src={cake.image} alt={cake.name} />
+            </div>
+            <h2>{cake.name}</h2>
 
-        </div>
-      ))}
-    </div>
+          </div>
+        ))}
+      </div>
 
     </div>
 
