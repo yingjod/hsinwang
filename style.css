@@ -440,3 +440,16 @@ color: var(--second-color);
   text-align: center;
 
 }
+
+.product-container{
+  display: grid; /* 使用 Grid Layout */
+  grid-template-columns: repeat(3, 1fr); /* 設定一列 5 個等寬商品 */
+  gap: 26px; 
+  margin-top: 5rem; 
+}
+
+.product-page{
+  margin-top: 150px;
+  margin-right: 350px;
+  margin-left: 350px;
+}

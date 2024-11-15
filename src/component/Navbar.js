@@ -1,5 +1,6 @@
 // Navbar.js
 import React from 'react'
+import { ShoppingCart } from 'phosphor-react'
 
 const Navbar = () => {
   return (
@@ -8,12 +9,13 @@ const Navbar = () => {
       <div className="bx bx-menu" id="menu-icon"></div>
 
       <ul className="navbar">
-        <li><a href="/#home">Home</a></li>
-        <li><a href="/#order">Order</a></li>
+        <li><a href="productpage.html">Products</a></li>
         <li><a href="/#store">Store</a></li>
         <li><a href="/#about">About</a></li>
         <li><a href="/#QA">Q&A</a></li>
         <li><a href="/#contact">Contact</a></li>
+        <li><a href="cart.html"><ShoppingCart size={32}/></a></li>
+
       </ul>
     </header>
   )

@@ -1,10 +1,11 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import StoreStatus from './StoreStatus'// Import StoreStatus component
-import InfoAccordion from './InfoAccordion' // Import InfoAccordion component
+import StoreStatus from './component/StoreStatus'// Import StoreStatus component
+import InfoAccordion from './component/InfoAccordion' // Import InfoAccordion component
 import OrderSection from './OrderSection' 
-import Navbar from './Navbar' 
+import Navbar from './component/Navbar' 
 import OrderForm from './OrderForm' 
+import ProductPage from './ProductPage'
 
 
 // Render StoreStatus to the specified mount point
@@ -35,3 +36,7 @@ if (OrderFormRoot) {
   createRoot(OrderFormRoot).render(<OrderForm />) 
 }
 
+const ProductPageRoot = document.getElementById('product-page-root')
+if (ProductPageRoot) {
+  createRoot(ProductPageRoot).render(<ProductPage />) 
+}

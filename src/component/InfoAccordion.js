@@ -2,7 +2,7 @@
 import React , { useState, useEffect } from 'react'
 import Accordion from 'react-bootstrap/Accordion'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import '../style.css' // Adjust the path as necessary
+import '../../style.css' // Adjust the path as necessary
 
 
 function InfoAccordion() {
