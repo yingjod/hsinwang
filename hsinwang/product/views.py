@@ -27,6 +27,6 @@ class AccList(generics.ListAPIView):
     queryset = Acc.objects.all()
     serializer_class = AccSerializer
 
-class BreadsViewSet(viewsets.ModelViewSet):
+class BreadsList(generics.ListAPIView):
     queryset = Breads.objects.all()
     serializer_class = BreadsSerializer

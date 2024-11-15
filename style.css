@@ -453,3 +453,34 @@ color: var(--second-color);
   margin-right: 350px;
   margin-left: 350px;
 }
+
+.box-bread{
+  flex: 0 0 28%; /* 每個卡片的最小寬度設為300px，可以調整這個值來改變卡片寬度 */
+  background: var(--second-color); /* 卡片背景色 */
+  padding: 20px; /* 卡片內部間距 */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 垂直居中 */
+  text-align: center; /* 文字居中 */
+  border-radius: 0.5rem; /* 圓角 */
+  scroll-snap-align: start; /* 滾動時對齊到卡片開始位置 */
+}
+
+.box-bread h2{
+  margin-top: 20px;
+  font-size: 20px;
+  color: #ebdbc8;
+}
+
+.addToCart{
+  padding: 7px 16px;
+  border: 2px solid var(--second-color);
+  border-radius: 40px;
+  color: var(--second-color);
+  font-weight:500 ;  
+}
+
+.addToCart:hover{
+  color: #fff;
+  background: var(--second-color);
+}

@@ -3,8 +3,9 @@ import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style.css'
 
-function ProdectPage() {
+function ProductPage() {
   const [cakes, setCakes] = useState([])
+  const [breads, setBreads] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
@@ -27,6 +28,25 @@ function ProdectPage() {
       })
   }, [])
 
+  useEffect(() => {
+    // Fetch data from the backend API
+    fetch('http://127.0.0.1:8000/api/product/breads/')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok')
+        }
+        return response.json()
+      })
+      .then((data) => {
+        setBreads(data)
+        setLoading(false)
+      })
+      .catch((error) => {
+        setError(error)
+        setLoading(false)
+      })
+  }, [])
+
 
 
   if (loading) return <div>Loading...</div>
@@ -41,6 +61,20 @@ function ProdectPage() {
               <img src={cake.image} alt={cake.name} />
             </div>
             <h2>{cake.name}</h2>
+            
+
+          </div>
+        ))}
+      </div>
+
+      <div className="product-container">
+        {breads.map((bread) => (
+          <div className="box-bread" key={bread.id}>
+            <div className="box-img">
+              <img src={bread.image} alt={bread.name} />
+            </div>
+            <h2>{bread.name}</h2>
+
 
           </div>
         ))}
@@ -48,7 +82,9 @@ function ProdectPage() {
 
     </div>
 
+    
+
   )
 }
 
-export default ProdectPage
+export default ProductPage

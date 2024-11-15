@@ -6,6 +6,7 @@ import OrderSection from './OrderSection'
 import Navbar from './component/Navbar' 
 import OrderForm from './OrderForm' 
 import ProductPage from './ProductPage'
+import CakeOrder from './CakeOrder'
 
 
 // Render StoreStatus to the specified mount point
@@ -39,4 +40,9 @@ if (OrderFormRoot) {
 const ProductPageRoot = document.getElementById('product-page-root')
 if (ProductPageRoot) {
   createRoot(ProductPageRoot).render(<ProductPage />) 
+}
+
+const CakeOrderRoot = document.getElementById('cake-order-root')
+if (CakeOrderRoot) {
+  createRoot(CakeOrderRoot).render(<CakeOrder />) 
 }
