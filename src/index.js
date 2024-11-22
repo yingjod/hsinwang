@@ -2,12 +2,27 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import StoreStatus from './component/StoreStatus'// Import StoreStatus component
 import InfoAccordion from './component/InfoAccordion' // Import InfoAccordion component
-import OrderSection from './OrderSection' 
+import OrderSection from './component/OrderSection' 
 import Navbar from './component/Navbar' 
 import OrderForm from './OrderForm' 
 import ProductPage from './ProductPage'
 import CakeOrder from './CakeOrder'
 
+
+
+import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
+import App from './App'
+
+const rootElement = document.getElementById('root')
+if (rootElement) {
+  const root = ReactDOM.createRoot(rootElement) // 创建 root 实例
+  root.render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  )
+}
 
 // Render StoreStatus to the specified mount point
 const storeStatusRoot = document.getElementById('store-status-root')
@@ -27,11 +42,6 @@ if (OrderSectionRoot) {
   createRoot(OrderSectionRoot).render(<OrderSection />) 
 }
 
-const NavbarRoot = document.getElementById('navbar-root')
-if (NavbarRoot) {
-  createRoot(NavbarRoot).render(<Navbar />) 
-}
-
 const OrderFormRoot = document.getElementById('order-form-root')
 if (OrderFormRoot) {
   createRoot(OrderFormRoot).render(<OrderForm />) 
@@ -46,3 +56,4 @@ const CakeOrderRoot = document.getElementById('cake-order-root')
 if (CakeOrderRoot) {
   createRoot(CakeOrderRoot).render(<CakeOrder />) 
 }
+

@@ -1,30 +1,23 @@
-<!-- secondpage.html -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>欣旺麵包店 HSIN WANG </title>
+  <title>欣旺麵包店 HSIN WANG</title>
   <link rel="icon" href="img/icon.png" type="png">
-
-  <!--lind to bootstrap-->
+  <!-- 引入 Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-  <!--lindk to Css-->
+  <!-- 引入自定义的样式 -->
   <link rel="stylesheet" href="style.css">
-
-
 </head>
 
 <body>
-  <!--Navabar-->
+  <!-- 只有 #root 作为根元素，React 将在这里渲染应用 -->
+  <div id="root"></div>
 
-  <div id="navbar-root"></div>
-  <div id="product-page-root"></div>
-
-  <!-- Link to Custom Js-->
-  <script src="bundle.js"></script> <!-- 從 webpack 生成的 JS 檔案 -->
+  <!-- 引入打包后的 JS -->
+  <script src="bundle.js"></script> <!-- Webpack 编译后的 JS -->
 </body>
-
 
 </html>

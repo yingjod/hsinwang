@@ -1,171 +1,20 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>欣旺麵包店 HSIN WANG | Taiwan </title>
+  <title>欣旺麵包店 HSIN WANG | Taiwan</title>
   <link rel="icon" href="img/icon.png" type="png">
-
-  <!--lind to bootstrap-->
+  <!-- Link to Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-  <!--lindk to Css-->
+  <!-- Link to Custom CSS -->
   <link rel="stylesheet" href="style.css">
-
-
 </head>
-
 <body>
-  <!--Navabar-->
+  <!-- React will render components here -->
+  <div id="root"></div>
 
-  <div id="navbar-root"></div>
-
-  <!--Home-->
-  <div class="home-line">
-    <section class="home" id="home">
-      <div class="home-text">
-       <img src="img/欣旺-removebg-preview (1).png" alt=""></img>
-        <h2>Happiness is a <br>tap away</h2>
-      </div>
-      <div class="home-img">
-        <img src="img/cake-collection.png">
-      </div>
-    </section>
-  </div>
-  <!--Order-->
-
-
-
-  <section class="order" id="order">
-    <div class="heading">
-      <span>立即訂購</span>
-      <h1>節慶蛋糕</h1>
-    </div>
-
-    <div id="order-section-root"></div>
-      <br>
-      <br>
-      <a href="Orderform.html" class="btn">立即訂購蛋糕</a>
-    </div>
-
-  </section>
-
-
-
-  <!--STORE-->
-
-  <section class="store" id="store">
-    <div class="heading">
-      <span>店鋪資訊</span>
-      <h1>地址及營業時間</h1>
-    </div>
-    <div class="store-container">
-      <div class="store-text">
-        <h2>｜ Banqiao 板橋本店 ｜</h2>
-        <h3>新北市板橋區光武街8號</h3>
-        <h3>（ 近捷運新埔站5號出口 ）</h3>
-        <h3>星期二 Tue - 星期六 Sat</h3>
-        <div class="openhour">
-          <h3>11:00 - 19:30 | </h3>
-          <div id="store-status-root"></div>
-        </div>
-        <h3> - 售完提早打烊 - </h3>
-        <h3> - 造訪前請先來電詢問以免向隅 - </h3>
-        <h3>T: 02-8251-0168</h3>
-      </div>
-      <div class="store-map">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.264166055768!2d121.465448477095!3d25.025107677822298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a9f3c5864b8d%3A0x90d412d86d1fd40!2z5qyj5pe66bq15YyF5bqX!5e0!3m2!1sen!2suk!4v1728568282518!5m2!1sen!2suk"
-          width="600" height="350" style="border:0;" allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </div>
-  </section>
-
-
-  <!--ABOUT-->
-
-
-  <section class="about" id="about">
-
-    <div class="heading">
-      <span>關於我們</span>
-      <h1>誠心誠意的麵包與甜點，想成為你們的日常</h1>
-    </div>
-
-    <section class="about-container">
-
-      <div class="about-text">
-        <h3>「欣旺」，代表的是 Louis 與 Claire 的新希望，</h3>
-        <h3>也是他們共同打造的夢想。</h3>
-        <br>
-        <h3>兩位創辦人，帶著對麵包與甜點的熱情，</h3>
-        <h3>從不同的背景出發，</h3>
-        <h3>最終在這裡相遇，開始了一段全新的旅程。</h3>
-        <br>
-
-      </div>
-
-      <div class="about-img-1">
-        <img src="img/IMG_0167.JPG" alt="" srcset="">
-      </div>
-
-      <div class="about-text-1">
-        <h3>欣旺麵包店秉持茶道「一期一會」的精神，珍惜每一位顧客與我們相遇的瞬間。</h3>
-        <h3>我們專注於歐洲傳統風味，使用自製天然酵種和新鮮食材，打造真誠的味道。</h3>
-        <br>
-        <h3>Louis 堅持用天然食材，像是新鮮火龍果製作的吐司；</h3>
-        <h3>Claire追求甜點的極致，享受製作過程中的每個細節。</h3>
-      </div>
-
-
-      <div class="about-img-2">
-        <img src="img/IMG_9368.JPG" alt="" srcset="">
-      </div>
-
-      <div class="about-text-2">
-        <h3>兩人背景不同，一個專注麵包，一個專長甜點，</h3>
-        <h3>但在彼此的專長中找到平衡，為顧客帶來獨特的味覺體驗。</h3>
-        <br>
-        <h3>我們希望欣旺成為顧客感受溫暖的地方，</h3>
-        <h3>用美味的麵包和甜點，陪伴每個美好日常。</h3>
-      </div>
-
-    </section>
-  </section>
-
-  <!--Q&A-->
-
-  <section class="QA" id="QA">
-
-    <div class="heading">
-      <span>Q&A</span>
-      <h1>常見問題</h1>
-    </div>
-
-    <div id="info-accordion-root"></div>
-
-  </section>
-  <!--Contact-->
-  <section class="contact" id="contact">
-    <div class="social">
-      <a href="https://www.facebook.com/hsinwangbakery/" target="_blank"><img src="img/facebook_3669678.png" alt=""></i></a>
-      <a href="https://www.instagram.com/hsinwangbakery/" target="_blank"><img src="img/instagram_1384015.png" alt=""></i></a>
-      <a href="mailto:hsinwangbakery0505@gmail.com?subject=Hello&body=This is a message" target="_blank"><img
-          src="img/email_5249753.png" alt=""></a>
-      <a href="https://lin.ee/Eny98PQ" target="_blank"><img src="img/line_3669731.png" alt=""></a>
-    </div>
-    <div class="develope">
-      <p>Design by <a href="https://portfolio-yl.vercel.app/" target="_blank" rel="noopener noreferrer">YING
-          LI</a></p>
-      <p>&copy; 2024 YING LI All rights reserved.</p>
-    </div>
-  </section>
-
-  <!-- Link to Custom Js-->
-  <script src="bundle.js"></script> <!-- 從 webpack 生成的 JS 檔案 -->
-
-
+  <!-- Link to Custom JS -->
+  <script src="bundle.js"></script> <!-- Bundled React JS -->
 </body>
-
 </html>

@@ -61,6 +61,7 @@ function ProductPage() {
               <img src={cake.image} alt={cake.name} />
             </div>
             <h2>{cake.name}</h2>
+            <botton>Add to cart</botton>
             
           </div>
         ))}

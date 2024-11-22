@@ -1,21 +1,28 @@
-// Navbar.js
-import React from 'react'
+import React, { useState } from 'react'
 import { ShoppingCart } from 'phosphor-react'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen)
+  }
+
   return (
     <header>
-      <a href="/#home" className="logo"> <img src="img/欣旺-removebg-preview (1).png" alt=""></img> </a>
-      <div className="bx bx-menu" id="menu-icon"></div>
+      <a href="/#home" className="logo">
+        <img src="/img/欣旺-removebg-preview (1).png" alt="Logo" />
+      </a>
+      <div className={`bx bx-menu ${menuOpen ? 'open' : ''}`} id="menu-icon" onClick={toggleMenu}></div>
 
-      <ul className="navbar">
-        <li><a href="productpage.html">Products</a></li>
-        <li><a href="/#store">Store</a></li>
+      <ul className={`navbar ${menuOpen ? 'active' : ''}`}>
+        <li><a href="/#store">Store</a></li> {/* 直接使用 <a> 来处理锚点 */}
         <li><a href="/#about">About</a></li>
+        <li><Link to="/productpage">Products</Link></li>
         <li><a href="/#QA">Q&A</a></li>
         <li><a href="/#contact">Contact</a></li>
-        <li><a href="cart.html"><ShoppingCart size={32}/></a></li>
-
+        <li><Link to="/cart"><ShoppingCart size={32} /></Link></li>
       </ul>
     </header>
   )
