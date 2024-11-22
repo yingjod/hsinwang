@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from rest_framework import generics
 from .models import Cake, Sizes, Filling, Base, Acc, Breads
 from .serializers import CakeSerializer,SizesSerializer,FillingSerializer,BaseSerializer, AccSerializer, BreadsSerializer
+from rest_framework.generics import RetrieveAPIView
 
 class CakeViewSet(viewsets.ModelViewSet):
     queryset = Cake.objects.all()
@@ -28,5 +29,9 @@ class AccList(generics.ListAPIView):
     serializer_class = AccSerializer
 
 class BreadsList(generics.ListAPIView):
+    queryset = Breads.objects.all()
+    serializer_class = BreadsSerializer
+
+class BreadDetail(RetrieveAPIView):
     queryset = Breads.objects.all()
     serializer_class = BreadsSerializer

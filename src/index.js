@@ -5,8 +5,8 @@ import InfoAccordion from './component/InfoAccordion' // Import InfoAccordion co
 import OrderSection from './component/OrderSection' 
 import Navbar from './component/Navbar' 
 import OrderForm from './OrderForm' 
-import ProductPage from './ProductPage'
-import CakeOrder from './CakeOrder'
+import ProductPage from './ProductListPage'
+import CakeOrder from './ProductPage'
 
 
 

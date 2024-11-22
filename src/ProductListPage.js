@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style.css'
+import { Link } from 'react-router-dom'
 
 function ProductPage() {
   const [cakes, setCakes] = useState([])
@@ -57,19 +58,32 @@ function ProductPage() {
       <div className="product-container">
         {cakes.map((cake) => (
           <div className="box" key={cake.id}>
-            <div className="box-img">
-              <img src={cake.image} alt={cake.name} />
-            </div>
+            <Link to={`/product/cake/${cake.id}`}>
+              <div className="box-img">
+                <img src={cake.image} alt={cake.name} />
+              </div>
+            </Link>
             <h2>{cake.name}</h2>
-            <botton>Add to cart</botton>
-            
+          </div>
+        ))}
+      </div>
+
+      <div className="product-container">
+        {breads.map((bread) => (
+          <div className="box-bread" key={bread.id}>
+            <Link to={`/product/breads/${bread.id}`}>
+              <div className="box-img">
+                <img src={bread.image} alt={bread.name} />
+              </div>
+            </Link>
+            <h2>{bread.name}</h2>
           </div>
         ))}
       </div>
 
     </div>
 
-    
+
 
   )
 }

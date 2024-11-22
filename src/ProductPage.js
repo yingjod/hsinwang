@@ -1,90 +1,71 @@
+// src/ProductPage.js
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
 
-import React, { useState, useEffect } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import '../style.css'
-
-function ProductPage() {
-  const [cakes, setCakes] = useState([])
-  const [breads, setBreads] = useState([])
+const ProductPage = ({ products }) => {
+  const { category, productId } = useParams()  // 從路由參數中獲取 category 和 productId
+  const [product, setProduct] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    // Fetch data from the backend API
-    fetch('http://127.0.0.1:8000/api/product/cake/')
+    // 根據 category 和 productId 動態構建 API URL
+    axios
+      .get(`http://localhost:8000/api/product/${category}/${productId}`)  // 動態路徑
       .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok')
-        }
-        return response.json()
-      })
-      .then((data) => {
-        setCakes(data)
+        console.log(response.data)
+        setProduct(response.data)  // 假設 API 返回商品資料
         setLoading(false)
       })
-      .catch((error) => {
-        setError(error)
+      .catch((err) => {
+        setError('Error fetching product data')
         setLoading(false)
       })
-  }, [])
+  }, [category, productId]) // 當 category 或 productId 改變時重新發送請求
 
-  useEffect(() => {
-    // Fetch data from the backend API
-    fetch('http://127.0.0.1:8000/api/product/breads/')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok')
-        }
-        return response.json()
-      })
-      .then((data) => {
-        setBreads(data)
-        setLoading(false)
-      })
-      .catch((error) => {
-        setError(error)
-        setLoading(false)
-      })
-  }, [])
+  // 加載中狀態
+  if (loading) {
+    return <div>Loading...</div>
+  }
+
+  // 顯示錯誤
+  if (error) {
+    return <div>{error}</div>
+  }
+
+  const formattedDescription = product.description.replace(/(。)/g, '$1<br/><br/>')
+
+  // 顯示商品資料
+  if (product) {
+    return (
+      <div className='prodoct-page'>
+        <img src={product.image} alt={product.name} />
+        <div className='prodoct-container'>
+          <h1>{product.name}</h1>
+          {product.sizes && product.sizes.length > 0 ? (
+            <ul>
+              {product.sizes.map(size => (
+
+                <li key={size.id}>
+
+                  {size.size_name} - NTD. {Math.floor(size.price)}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <li>NTD. {product.price}</li>
+          )}
+          <p dangerouslySetInnerHTML={{ __html: formattedDescription }} />
 
 
-
-  if (loading) return <div>Loading...</div>
-  if (error) return <div>Error: {error.message}</div>
-
-  return (
-    <div className='product-page'>
-      <div className="product-container">
-        {cakes.map((cake) => (
-          <div className="box" key={cake.id}>
-            <div className="box-img">
-              <img src={cake.image} alt={cake.name} />
-            </div>
-            <h2>{cake.name}</h2>
-            
-
-          </div>
-        ))}
+        </div>
       </div>
+    )
+  }
 
-      <div className="product-container">
-        {breads.map((bread) => (
-          <div className="box-bread" key={bread.id}>
-            <div className="box-img">
-              <img src={bread.image} alt={bread.name} />
-            </div>
-            <h2>{bread.name}</h2>
-
-
-          </div>
-        ))}
-      </div>
-
-    </div>
-
-    
-
-  )
+  return <div>Product not found</div>  // 如果沒有找到商品資料
 }
+
 
 export default ProductPage
