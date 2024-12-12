@@ -1,6 +1,7 @@
 // src/OrderPage.js
 import React from 'react'
 import OrderSection from './OrderSection'
+import { Link } from 'react-router-dom'
 
 const OrderPage = () => {
   return (
@@ -13,7 +14,7 @@ const OrderPage = () => {
       <OrderSection />
       <br />
       <br />
-      <a href="Orderform.html" className="btn">立即訂購蛋糕</a>
+      <Link to="/productpage" className="btn">看更多商品..</Link>
     </section>
   )
 }

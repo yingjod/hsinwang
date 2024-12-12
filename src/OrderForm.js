@@ -88,9 +88,9 @@ function OrderForm() {
 
     if (selectedCakeObj) {
       updatedGroups[index].selectedCakeImage = selectedCakeObj.image
-      updatedGroups[index].selectedSizes = allSizes.filter(size => selectedCakeObj.sizes.includes(size.id))
-      updatedGroups[index].selectedFilling = allFilling.filter(filling => selectedCakeObj.fillings.includes(filling.id))
-      updatedGroups[index].selectedBase = allBase.filter(base => selectedCakeObj.bases.includes(base.id))
+      updatedGroups[index].selectedSizes =  selectedCakeObj.sizes
+      updatedGroups[index].selectedFilling =  selectedCakeObj.fillings
+      updatedGroups[index].selectedBase =  selectedCakeObj.bases
       updatedGroups[index].selectedCakeDescription = selectedCakeObj.description
 
     } else {

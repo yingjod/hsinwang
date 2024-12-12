@@ -17,12 +17,11 @@ const Navbar = () => {
       <div className={`bx bx-menu ${menuOpen ? 'open' : ''}`} id="menu-icon" onClick={toggleMenu}></div>
 
       <ul className={`navbar ${menuOpen ? 'active' : ''}`}>
+        <li><a href="/#order">Products</a></li>
         <li><a href="/#store">Store</a></li> 
         <li><a href="/#about">About</a></li>
-        <li><Link to="/productpage">Products</Link></li>
         <li><a href="/#QA">Q&A</a></li>
         <li><a href="/#contact">Contact</a></li>
-        <li><Link to="/cart"><ShoppingCart size={32} /></Link></li>
       </ul>
     </header>
   )
