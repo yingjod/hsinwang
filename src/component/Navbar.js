@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <header>
       <a href="/#home" className="logo">
-        <img src="/img/欣旺-removebg-preview (1).png" alt="Logo" />
+        <img src="./img/欣旺-removebg-preview (1).png" alt="Logo" />
       </a>
       <div className={`bx bx-menu ${menuOpen ? 'open' : ''}`} id="menu-icon" onClick={toggleMenu}></div>
 

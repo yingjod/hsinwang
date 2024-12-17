@@ -1,4 +1,5 @@
-const path = require('path')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',  // 指定你的進入點文件
@@ -20,11 +21,28 @@ module.exports = {
         test: /\.css$/,  // 處理 .css 檔案
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        type: 'asset/resource',  // 使用 Webpack 5 的資源模塊
+        generator: {
+          filename: 'img/[name].[hash][ext]',  // 圖片輸出路徑
+        },
+      },
     ],
   },
   devServer: {
-    static: path.join(__dirname), // 指定靜態文件的資料夾
+    static: {
+      directory: path.join(__dirname, 'dist'),  // 指定靜態文件的資料夾
+    },
     port: 8080, // 開發伺服器執行的 port
     open: true, // 自動打開瀏覽器
+    hot: true,
+    historyApiFallback: true,  // 防止 SPA 路由錯誤
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'index.html',  // 使用您自定義的 index.html 模板
+      filename: 'index.html',        // 輸出的 HTML 文件名稱
+    }),
+  ],
 };
