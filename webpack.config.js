@@ -34,6 +34,8 @@ module.exports = {
     static: {
       directory: path.join(__dirname, 'dist'),  // 指定靜態文件的資料夾
     },
+    disableHostCheck: true, // 禁用 Host header 檢查
+    host: '0.0.0.0', 
     port: 8080, // 開發伺服器執行的 port
     open: true, // 自動打開瀏覽器
     hot: true,
