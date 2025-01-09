@@ -1,11 +1,14 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: './src/index.js',  // 指定你的進入點文件
   output: {
     path: path.resolve(__dirname, 'dist'),  // 指定輸出目錄
     filename: 'bundle.js',  // 輸出的檔案名稱
+    clean: true,
+    publicPath: '/', 
   },
   mode: 'development', // 可以設為 'development' 或 'production'
   module: {
@@ -19,15 +22,15 @@ module.exports = {
       },
       {
         test: /\.css$/,  // 處理 .css 檔案
-        use: ['style-loader', 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(png|jpe?g|gif|svg)$/i, 
         type: 'asset/resource',  // 使用 Webpack 5 的資源模塊
         generator: {
-          filename: 'img/[name].[hash][ext]',  // 圖片輸出路徑
+          filename: 'img/[name][ext]',   // 圖片輸出路徑
         },
-      },
+      }
     ],
   },
   devServer: {
@@ -46,5 +49,8 @@ module.exports = {
       template: 'index.html',  // 使用您自定義的 index.html 模板
       filename: 'index.html',        // 輸出的 HTML 文件名稱
     }),
+    new MiniCssExtractPlugin({
+      filename: 'style.css',
+    })
   ],
-};
+}

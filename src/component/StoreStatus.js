@@ -5,6 +5,8 @@ function StoreStatus() {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
+    let isMounted = true
+
     const openingHour = 11
     const closingHour = 19
     const closingMinute = 30
@@ -22,6 +24,10 @@ function StoreStatus() {
     const isOpenDay = ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].includes(currentDay);
 
     setIsOpen(isOpenTime && isOpenDay)
+
+    return () => {
+      isMounted = false // 组件卸载时设置为 false，防止更新状态
+    }
   }, [])
 
   return (

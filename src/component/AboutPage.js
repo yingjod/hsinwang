@@ -19,7 +19,7 @@ const AboutPage = () => {
         </div>
 
         <div className="about-img-1">
-          <img src="img/IMG_0167.JPG" alt="Bakery" />
+          <img src="img/IMG0167.jpg" alt="Bakery" />
         </div>
 
         <div className="about-text-1">
@@ -28,7 +28,7 @@ const AboutPage = () => {
         </div>
 
         <div className="about-img-2">
-          <img src="img/IMG_9368.JPG" alt="Bakery products" />
+          <img src="img/IMG9368.jpg" alt="Bakery products" />
         </div>
 
         <div className="about-text-2">

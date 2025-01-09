@@ -1,8 +1,7 @@
 // InfoAccordion.js
-import React , { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Accordion from 'react-bootstrap/Accordion'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import '../../style.css' // Adjust the path as necessary
 
 
 function InfoAccordion() {
@@ -12,6 +11,7 @@ function InfoAccordion() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
+    let isMounted = true
     // Fetch data from the API endpoint you defined in Django
     fetch('http://127.0.0.1:8000/api/QA/questions/')
       .then((response) => {
@@ -28,6 +28,10 @@ function InfoAccordion() {
         setError(error)
         setLoading(false)
       })
+
+    return () => {
+      isMounted = false // 组件卸载时设置为 false，防止更新状态
+    }
   }, [])
 
   if (loading) return <div>Loading...</div>

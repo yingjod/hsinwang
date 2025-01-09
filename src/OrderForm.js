@@ -22,6 +22,10 @@ function OrderForm() {
   ])
 
   useEffect(() => {
+
+    let isMounted = true
+
+
     fetch('http://127.0.0.1:8000/api/product/cake/')
       .then((response) => {
         if (!response.ok) throw new Error('Network response was not ok')
@@ -36,31 +40,66 @@ function OrderForm() {
         setError(error)
         setLoading(false)
       })
+
+
+    return () => {
+      isMounted = false // 组件卸载时设置为 false，防止更新状态
+    }
+
   }, [])
 
   useEffect(() => {
+
+    let isMounted = true
+
     fetch('http://127.0.0.1:8000/api/product/sizes/')
       .then((response) => response.json())
       .then(setAllSizes)
       .catch(console.error)
+    return () => {
+      isMounted = false // 组件卸载时设置为 false，防止更新状态
+    }
+
+
   }, [])
 
   useEffect(() => {
+
+    let isMounted = true
+
     fetch('http://127.0.0.1:8000/api/product/Fillings/')
       .then((response) => response.json())
       .then(setAllFilling)
       .catch(console.error)
+
+    return () => {
+      isMounted = false // 组件卸载时设置为 false，防止更新状态
+    }
   }, [])
 
   useEffect(() => {
+
+
+    let isMounted = true
+
+
+
     fetch('http://127.0.0.1:8000/api/product/base/')
       .then((response) => response.json())
       .then(setAllBase)
       .catch(console.error)
+
+    return () => {
+      isMounted = false // 组件卸载时设置为 false，防止更新状态
+    }
   }, [])
 
 
   useEffect(() => {
+
+
+    let isMounted = true
+
     if (loading) {
       fetch('http://127.0.0.1:8000/api/product/acc/')
         .then((response) => {
@@ -75,6 +114,10 @@ function OrderForm() {
           setError(error)
           setLoading(false) // 即使發生錯誤，也要設置為 false
         })
+
+      return () => {
+        isMounted = false // 组件卸载时设置为 false，防止更新状态
+      }
     }
   }, [loading])  // 依賴項的設置要小心，避免無窮循環
 
@@ -88,9 +131,9 @@ function OrderForm() {
 
     if (selectedCakeObj) {
       updatedGroups[index].selectedCakeImage = selectedCakeObj.image
-      updatedGroups[index].selectedSizes =  selectedCakeObj.sizes
-      updatedGroups[index].selectedFilling =  selectedCakeObj.fillings
-      updatedGroups[index].selectedBase =  selectedCakeObj.bases
+      updatedGroups[index].selectedSizes = selectedCakeObj.sizes
+      updatedGroups[index].selectedFilling = selectedCakeObj.fillings
+      updatedGroups[index].selectedBase = selectedCakeObj.bases
       updatedGroups[index].selectedCakeDescription = selectedCakeObj.description
 
     } else {
@@ -130,7 +173,7 @@ function OrderForm() {
     const selectedAccObj = acc.find((c) => c.id === parseInt(selectedAccId))// 查找選擇的配件對象
 
     if (selectedAccObj) {
-      console.log("Selected accessory object:", selectedAccObj) // 確認選擇的對象
+      console.log('Selected accessory object:', selectedAccObj) // 確認選擇的對象
       updatedAccGroups[index].selectedAccImage = selectedAccObj.image
     } else {
       updatedAccGroups[index].selectedAcc = '' // 如果沒有選擇的配件，設為空字符串

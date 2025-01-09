@@ -7,16 +7,14 @@ import Navbar from './component/Navbar'
 import OrderForm from './OrderForm' 
 import ProductPage from './ProductListPage'
 import CakeOrder from './ProductPage'
+import '../style.css'
 
-
-
-import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 
 const rootElement = document.getElementById('root')
 if (rootElement) {
-  const root = ReactDOM.createRoot(rootElement) // 创建 root 实例
+  const root = createRoot(rootElement)
   root.render(
     <BrowserRouter>
       <App />
@@ -56,4 +54,10 @@ const CakeOrderRoot = document.getElementById('cake-order-root')
 if (CakeOrderRoot) {
   createRoot(CakeOrderRoot).render(<CakeOrder />) 
 }
+
+const images = require.context('./img', false, /\.(jpg|jpeg|png|gif)$/)
+images.keys().forEach(image => {
+  console.log(image) // 確保圖片已經被加載
+})
+
 
