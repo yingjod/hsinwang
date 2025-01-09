@@ -132,7 +132,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",  # Allow your frontend to access the API
     # Add other origins as needed
-    "https://hsinwang-wvii-bw63x9rba-ying-lis-projects.vercel.app",
+    "https://hsinwang-production.up.railway.app"
 ]
 
 MEDIA_URL = '/cakes/'
