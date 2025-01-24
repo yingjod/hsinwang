@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style.css'
@@ -10,12 +9,9 @@ function ProductPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  useEffect(() => {
-
-    let isMounted = true
-
-    // Fetch data from the backend API
-    fetch('http://127.0.0.1:8000/api/product/cake/')
+  // 通用的 fetch 函數
+  const fetchData = (url, setData, controller) => {
+    return fetch(url, { signal: controller.signal })
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok')
@@ -23,47 +19,37 @@ function ProductPage() {
         return response.json()
       })
       .then((data) => {
-        setCakes(data)
-        setLoading(false)
+        setData(data)
       })
-      .catch((error) => {
-        setError(error)
-        setLoading(false)
+      .catch((err) => {
+        if (err.name !== 'AbortError') {
+          setError(err)  // 避免因中止請求而顯示錯誤
+        }
       })
-
-    return () => {
-      isMounted = false  // 组件卸载时设置为 false，防止更新状态
-    }
-
-  }, [])
+  }
 
   useEffect(() => {
+    setLoading(true)  // 開始加載
+    const controllerCakes = new AbortController()
+    const controllerBreads = new AbortController()
 
+    // 同時發送兩個請求，並且當兩個都完成時再設置 loading = false
+    Promise.all([
+      fetchData('http://127.0.0.1:8000/api/product/cake/', setCakes, controllerCakes),
+      fetchData('http://127.0.0.1:8000/api/product/breads/', setBreads, controllerBreads),
+    ])
+      .then(() => {
+        setLoading(false)  // 當兩個請求都完成後設置 loading 為 false
+      })
 
-    let isMounted = true
-    // Fetch data from the backend API
-    fetch('http://127.0.0.1:8000/api/product/breads/')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok')
-        }
-        return response.json()
-      })
-      .then((data) => {
-        setBreads(data)
-        setLoading(false)
-      })
-      .catch((error) => {
-        setError(error)
-        setLoading(false)
-      })
+    // 組件卸載時取消請求
     return () => {
-      isMounted = false  // 组件卸载时设置为 false，防止更新状态
+      controllerCakes.abort()
+      controllerBreads.abort()
     }
-  }, [])
+  }, [])  // 只會在組件加載時執行一次
 
-
-
+  // 等待數據加載完成
   if (loading) return <div>Loading...</div>
   if (error) return <div>Error: {error.message}</div>
 
@@ -94,11 +80,7 @@ function ProductPage() {
           </div>
         ))}
       </div>
-
     </div>
-
-
-
   )
 }
 

@@ -7,7 +7,6 @@ function OrderSection() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    let isMounted = true
     // Fetch data from the backend API
     fetch('http://127.0.0.1:8000/api/product/cake/')
       .then((response) => {
@@ -24,10 +23,6 @@ function OrderSection() {
         setError(error)
         setLoading(false)
       })
-
-    return () => {
-      isMounted = false  // 组件卸载时设置为 false，防止更新状态
-    }
   }, [])
 
   if (loading) return <div>Loading...</div>

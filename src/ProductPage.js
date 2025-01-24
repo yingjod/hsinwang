@@ -11,8 +11,6 @@ const ProductPage = ({ products }) => {
 
   useEffect(() => {
 
-    let isMounted = true
-    // 根據 category 和 productId 動態構建 API URL
     axios
       .get(`http://localhost:8000/api/product/${category}/${productId}`)  // 動態路徑
       .then((response) => {
@@ -24,10 +22,6 @@ const ProductPage = ({ products }) => {
         setError('Error fetching product data')
         setLoading(false)
       })
-
-    return () => {
-      isMounted = false  // 组件卸载时设置为 false，防止更新状态
-    }
   }, [category, productId]) // 當 category 或 productId 改變時重新發送請求
 
   // 加載中狀態
@@ -40,7 +34,7 @@ const ProductPage = ({ products }) => {
     return <div>{error}</div>
   }
 
-  const formattedDescription = product.description.replace(/(。)/g, '$1<br/><br/>')
+  const formattedDescription = product.description.replace(/。/g, '。<br/><br/>')
 
   // 顯示商品資料
   if (product) {

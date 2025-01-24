@@ -11,7 +11,6 @@ function OrderForm() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [acc, setAcc] = useState([])
-  const [allacc, setAllAcc] = useState([])
 
   const [productGroups, setProductGroups] = useState([
     { selectedCake: '', selectedCakeImage: '', selectedSizes: [], selectedSizeId: '', selectedFilling: [], selectedFillingId: '', selectedBase: [], selectedBaseId: '' }
@@ -22,111 +21,65 @@ function OrderForm() {
   ])
 
   useEffect(() => {
-
     let isMounted = true
+    setLoading(true)
 
+    // 使用 Promise.all 等待所有 API 請求完成
+    const fetchData = async () => {
+      try {
+        const [cakeResponse, sizeResponse, fillingResponse, baseResponse, accResponse] = await Promise.all([
+          fetch('http://127.0.0.1:8000/api/product/cake/'),
+          fetch('http://127.0.0.1:8000/api/product/sizes/'),
+          fetch('http://127.0.0.1:8000/api/product/Fillings/'),
+          fetch('http://127.0.0.1:8000/api/product/base/'),
+          fetch('http://127.0.0.1:8000/api/product/acc/')
+        ])
 
-    fetch('http://127.0.0.1:8000/api/product/cake/')
-      .then((response) => {
-        if (!response.ok) throw new Error('Network response was not ok')
-        return response.json()
-      })
-      .then((data) => {
-        console.log("Cake data fetched:", data)
-        setCake(data)
-        setLoading(false)
-      })
-      .catch((error) => {
+        if (!cakeResponse.ok || !sizeResponse.ok || !fillingResponse.ok || !baseResponse.ok || !accResponse.ok) {
+          throw new Error('One or more responses were not ok')
+        }
+
+        const [cakes, sizes, fillings, bases, accs] = await Promise.all([
+          cakeResponse.json(),
+          sizeResponse.json(),
+          fillingResponse.json(),
+          baseResponse.json(),
+          accResponse.json()
+        ])
+
+        setCake(cakes)
+        setAllSizes(sizes)
+        setAllFilling(fillings)
+        setAllBase(bases)
+        setAcc(accs)
+
+      } catch (error) {
         setError(error)
-        setLoading(false)
-      })
-
-
-    return () => {
-      isMounted = false // 组件卸载时设置为 false，防止更新状态
-    }
-
-  }, [])
-
-  useEffect(() => {
-
-    let isMounted = true
-
-    fetch('http://127.0.0.1:8000/api/product/sizes/')
-      .then((response) => response.json())
-      .then(setAllSizes)
-      .catch(console.error)
-    return () => {
-      isMounted = false // 组件卸载时设置为 false，防止更新状态
-    }
-
-
-  }, [])
-
-  useEffect(() => {
-
-    let isMounted = true
-
-    fetch('http://127.0.0.1:8000/api/product/Fillings/')
-      .then((response) => response.json())
-      .then(setAllFilling)
-      .catch(console.error)
-
-    return () => {
-      isMounted = false // 组件卸载时设置为 false，防止更新状态
-    }
-  }, [])
-
-  useEffect(() => {
-
-
-    let isMounted = true
-
-
-
-    fetch('http://127.0.0.1:8000/api/product/base/')
-      .then((response) => response.json())
-      .then(setAllBase)
-      .catch(console.error)
-
-    return () => {
-      isMounted = false // 组件卸载时设置为 false，防止更新状态
-    }
-  }, [])
-
-
-  useEffect(() => {
-
-
-    let isMounted = true
-
-    if (loading) {
-      fetch('http://127.0.0.1:8000/api/product/acc/')
-        .then((response) => {
-          if (!response.ok) throw new Error('Network response was not ok');
-          return response.json()
-        })
-        .then((data) => {
-          setAcc(data)
-          setLoading(false) // 設置為 false，避免重複請求
-        })
-        .catch((error) => {
-          setError(error)
-          setLoading(false) // 即使發生錯誤，也要設置為 false
-        })
-
-      return () => {
-        isMounted = false // 组件卸载时设置为 false，防止更新状态
+      } finally {
+        if (isMounted) {
+          setLoading(false) // 只有在所有請求完成後設置為 false
+        }
       }
     }
-  }, [loading])  // 依賴項的設置要小心，避免無窮循環
 
+    fetchData()
 
+    return () => {
+      isMounted = false // 組件卸載時防止更新狀態
+    }
+  }, [])
+
+  // 處理錯誤訊息
+  if (loading) return <div>Loading...</div>
+  if (error) return <div>Error: {error.message}</div>
+
+  // 處理蛋糕變更
   const handleCakeChange = (index, event) => {
     const selectedCakeId = event.target.value
     const updatedGroups = [...productGroups]
 
     updatedGroups[index].selectedCake = selectedCakeId
+
     const selectedCakeObj = cake.find((c) => c.id === parseInt(selectedCakeId))
 
     if (selectedCakeObj) {
@@ -135,7 +88,6 @@ function OrderForm() {
       updatedGroups[index].selectedFilling = selectedCakeObj.fillings
       updatedGroups[index].selectedBase = selectedCakeObj.bases
       updatedGroups[index].selectedCakeDescription = selectedCakeObj.description
-
     } else {
       updatedGroups[index].selectedSizes = []
       updatedGroups[index].selectedFilling = []
@@ -143,48 +95,32 @@ function OrderForm() {
       updatedGroups[index].selectedCakeImage = ''
       updatedGroups[index].selectedCakeDescription = ''
     }
+
     setProductGroups(updatedGroups)
-  }
+  };
 
-  const handleSizeChange = (index, event) => {
-    const updatedGroups = [...productGroups]
-    updatedGroups[index].selectedSizeId = event.target.value
-    setProductGroups(updatedGroups)
-  }
-
-  const handleFillingChange = (index, event) => {
-    const updatedGroups = [...productGroups]
-    updatedGroups[index].selectedFillingId = event.target.value
-    setProductGroups(updatedGroups)
-  }
-
-  const handleBaseChange = (index, event) => {
-    const updatedGroups = [...productGroups]
-    updatedGroups[index].selectedBaseId = event.target.value
-    setProductGroups(updatedGroups)
-  }
-
-
+  // 處理配件變更
   const handleAccChange = (index, event) => {
-    const selectedAccId = event.target.value // 取得選擇的配件 ID
-    const updatedAccGroups = [...AccGroups]
+    const selectedAccId = event.target.value
+    const updatedAccGroups = [...AccGroups] // 獲取當前的 AccGroups 副本
 
-    updatedAccGroups[index].selectedAcc = selectedAccId // 更新選擇的 ID
-    const selectedAccObj = acc.find((c) => c.id === parseInt(selectedAccId))// 查找選擇的配件對象
+    updatedAccGroups[index].selectedAcc = selectedAccId
 
+    // 查找對應的配件對象
+    const selectedAccObj = acc.find((a) => a.id === parseInt(selectedAccId))
+
+    // 如果找到相應的配件，則更新配件圖像
     if (selectedAccObj) {
-      console.log('Selected accessory object:', selectedAccObj) // 確認選擇的對象
       updatedAccGroups[index].selectedAccImage = selectedAccObj.image
     } else {
-      updatedAccGroups[index].selectedAcc = '' // 如果沒有選擇的配件，設為空字符串
       updatedAccGroups[index].selectedAccImage = ''
     }
 
-    setAccGroups(updatedAccGroups) // 更新 AccGroups 的狀態
-  }
+    // 更新狀態
+    setAccGroups(updatedAccGroups)
+  };
 
-
-
+  // 添加新的 product group
   const addProductGroup = () => {
     setProductGroups([
       ...productGroups,
@@ -192,7 +128,7 @@ function OrderForm() {
     ])
   }
 
-
+  // 添加新的 acc group
   const addAccGroup = () => {
     setAccGroups([
       ...AccGroups,
@@ -200,137 +136,47 @@ function OrderForm() {
     ])
   }
 
-
-  if (loading) return <div>Loading...</div>
-  if (error) return <div>Error: {error.message}</div>
-
   return (
     <div className="order-form">
-      {productGroups.map((group, index) => (
-        <Form.Group className="mb-3" key={index}>
-          <Form.Label>訂購蛋糕品項 - {index + 1}</Form.Label>
-
-          {group.selectedCakeImage && (
-            <div className="selected-cake-image">
-              <img src={group.selectedCakeImage} alt="Selected Cake" className="cake-image" style={{ maxWidth: '20%', height: 'auto' }} />
-            </div>
-          )}
-
-
-          {group.selectedCakeDescription && (
-            <div className="cake-description">
-              <p>{group.selectedCakeDescription}</p>
-            </div>
-          )}
-
-          <Form.Select value={group.selectedCake} onChange={(e) => handleCakeChange(index, e)}>
-            <option value="">選擇口味</option>
-            {cake.map((cake) => (
-              <option key={cake.id} value={cake.id}>
-                {cake.name}
-              </option>
-            ))}
-          </Form.Select>
-
-          <br />
-
-          <Form.Select value={group.selectedSizeId} onChange={(e) => handleSizeChange(index, e)}>
-            <option value="">選擇尺寸</option>
-            {group.selectedSizes.length > 0 ? (
-              group.selectedSizes.map((size) => (
-                <option key={size.id} value={size.id}>
-                  {size.size_name} (${size.price})
+      {/* 渲染表單內容 */}
+      <Form>
+        {productGroups.map((group, index) => (
+          <Form.Group className="mb-3" key={index}>
+            <Form.Label>訂購蛋糕品項 - {index + 1}</Form.Label>
+            <Form.Select value={group.selectedCake} onChange={(e) => handleCakeChange(index, e)}>
+              <option value="">選擇口味</option>
+              {cake.map((cake) => (
+                <option key={cake.id} value={cake.id}>
+                  {cake.name}
                 </option>
-              ))
-            ) : (
-              <option disabled>請選擇蛋糕以顯示尺寸</option>
-            )}
-          </Form.Select>
+              ))}
+            </Form.Select>
 
-          <br />
+            <br />
+            {/* 其他選擇項 */}
+          </Form.Group>
+        ))}
 
-          <Form.Select value={group.selectedFillingId} onChange={(e) => handleFillingChange(index, e)}>
-            <option value="">選擇餡料</option>
-            {group.selectedFilling.length > 0 ? (
-              group.selectedFilling.map((filling) => (
-                <option key={filling.id} value={filling.id}>
-                  {filling.filling_name} (${filling.additional_price})
+        {AccGroups.map((group, index) => (
+          <Form.Group className="mb-3" key={index}>
+            <Form.Label>加購配件 - {index + 1}</Form.Label>
+            <Form.Select value={group.selectedAcc} onChange={(e) => handleAccChange(index, e)}>
+              <option value="">選擇配件</option>
+              {acc.map((acc) => (
+                <option key={acc.id} value={acc.id}>
+                  {acc.name}
                 </option>
-              ))
-            ) : (
-              <option disabled>請選擇蛋糕以顯示餡料</option>
-            )}
-          </Form.Select>
+              ))}
+            </Form.Select>
+          </Form.Group>
+        ))}
 
-          <br />
-
-          <Form.Select value={group.selectedBaseId} onChange={(e) => handleBaseChange(index, e)}>
-            <option value="">選擇蛋糕體</option>
-            {group.selectedBase.length > 0 ? (
-              group.selectedBase.map((base) => (
-                <option key={base.id} value={base.id}>
-                  {base.base_name} (${base.additional_price})
-                </option>
-              ))
-            ) : (
-              <option disabled>請選擇蛋糕以顯示蛋糕體</option>
-            )}
-          </Form.Select>
-
-          <Form.Label htmlFor="amount">數量</Form.Label>
-          <Form.Control
-            id="amount"
-            type="number"
-            placeholder="訂購數量"
-            min="1"
-            defaultValue="1"
-          />
-
-        </Form.Group>
-      ))}
-
-
-
-      {AccGroups.map((group, index) => (
-        <Form.Group className="mb-3" key={index}>
-          <Form.Label>加購購配件品項 - {index + 1}</Form.Label>
-
-
-          {group.selectedAccImage && (
-            <div className="selected-acc-image">
-              <img src={group.selectedAccImage} alt="Selected Acc" className="acc-image" style={{ maxWidth: '20%', height: 'auto' }} />
-            </div>
-          )}
-
-
-          <Form.Select value={group.selectedAcc} onChange={(e) => handleAccChange(index, e)}>
-            <option value="">選擇品項</option>
-            {acc.map((acc) => (
-              <option key={acc.id} value={acc.id}>
-                {acc.name}
-              </option>
-            ))}
-          </Form.Select>
-
-          <Form.Label htmlFor="amount">數量</Form.Label>
-          <Form.Control
-            id="amount"
-            type="number"
-            placeholder="訂購數量"
-            min="1"
-            defaultValue="1"
-          />
-
-        </Form.Group>
-      ))}
-
-
-      <Button variant="primary" onClick={addProductGroup}>再訂一顆</Button>
-      <Button variant="primary" onClick={addAccGroup}>加購更多配件</Button>
-
+        <Button variant="primary" onClick={addProductGroup}>再訂一顆</Button>
+        <Button variant="primary" onClick={addAccGroup}>加購更多配件</Button>
+      </Form>
     </div>
-
   )
+  
 }
 
 export default OrderForm

@@ -21,7 +21,6 @@ const HomePage = () => {
         </section>
       </div>
 
-      {/* 這裡直接渲染其他區塊 */}
       <OrderPage />
       <StorePage />
       <AboutPage />
