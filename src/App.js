@@ -14,11 +14,10 @@ function App() {
   const [cakesError, setCakesError] = useState(null)
   const [breadsLoading, setBreadsLoading] = useState(true)
   const [breadsError, setBreadsError] = useState(null)
-  const apiUrl = process.env.REACT_APP_API_BASE_URL
 
   // 获取蛋糕数据
   useEffect(() => {
-    fetch('${apiUrl}/api/product/cake/')
+    fetch('http://127.0.0.1:8000/api/product/cake/')
       .then((response) => {
         if (!response.ok) throw new Error('Failed to fetch cakes')
         return response.json()
@@ -37,7 +36,7 @@ function App() {
 
   // 获取面包数据
   useEffect(() => {
-    fetch('${apiUrl}/api/product/breads/')
+    fetch('http://127.0.0.1:8000/api/product/breads/')
       .then((response) => {
         if (!response.ok) throw new Error('Failed to fetch breads')
         return response.json()
