@@ -23,10 +23,12 @@ function App() {
         return response.json()
       })
       .then((data) => {
+        console.log('Cake data:', data)
         setCakes(data)
         setCakesLoading(false)
       })
       .catch((error) => {
+        console.error('Error fetching cakes:', error)
         setCakesError(error)
         setCakesLoading(false)
       })
@@ -40,10 +42,12 @@ function App() {
         return response.json()
       })
       .then((data) => {
+        console.log('Bread data:', data)
         setBreads(data)
         setBreadsLoading(false)
       })
       .catch((error) => {
+        console.error('Error fetching breads:', error)
         setBreadsError(error)
         setBreadsLoading(false)
       })
