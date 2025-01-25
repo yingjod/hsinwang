@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const Dotenv = require('dotenv-webpack')
 
 module.exports = {
   entry: './src/index.js',  // 指定你的進入點文件
@@ -51,6 +52,7 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: 'style.css',
-    })
+    }),
+    new Dotenv()
   ],
 }

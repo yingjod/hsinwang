@@ -16,6 +16,11 @@ function App() {
   const [breadsError, setBreadsError] = useState(null)
   const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 
+  useEffect(() => {
+    console.log('process.env:', process.env) // 打印所有环境变量
+    console.log('API_BASE_URL:', process.env.REACT_APP_API_BASE_URL) // 打印特定环境变量
+  }, [])
+
   // 获取蛋糕数据
   useEffect(() => {
     fetch(`${API_BASE_URL}/api/product/cake/`)
