@@ -11,6 +11,7 @@ function OrderForm() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [acc, setAcc] = useState([])
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 
   const [productGroups, setProductGroups] = useState([
     { selectedCake: '', selectedCakeImage: '', selectedSizes: [], selectedSizeId: '', selectedFilling: [], selectedFillingId: '', selectedBase: [], selectedBaseId: '' }
@@ -28,11 +29,11 @@ function OrderForm() {
     const fetchData = async () => {
       try {
         const [cakeResponse, sizeResponse, fillingResponse, baseResponse, accResponse] = await Promise.all([
-          fetch('http://127.0.0.1:8000/api/product/cake/'),
-          fetch('http://127.0.0.1:8000/api/product/sizes/'),
-          fetch('http://127.0.0.1:8000/api/product/Fillings/'),
-          fetch('http://127.0.0.1:8000/api/product/base/'),
-          fetch('http://127.0.0.1:8000/api/product/acc/')
+          fetch(`${API_BASE_URL}/api/product/cake/`),
+          fetch(`${API_BASE_URL}/api/product/sizes/`),
+          fetch(`${API_BASE_URL}/api/product/Fillings/`),
+          fetch(`${API_BASE_URL}/api/product/base/`),
+          fetch(`${API_BASE_URL}/api/product/acc/`)
         ])
 
         if (!cakeResponse.ok || !sizeResponse.ok || !fillingResponse.ok || !baseResponse.ok || !accResponse.ok) {

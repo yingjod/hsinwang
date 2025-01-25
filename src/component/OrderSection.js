@@ -5,10 +5,11 @@ function OrderSection() {
   const [cakes, setCakes] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 
   useEffect(() => {
-    // Fetch data from the backend API
-    fetch('http://127.0.0.1:8000/api/product/cake/')
+
+    fetch(`${API_BASE_URL}/api/product/cake/`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok')

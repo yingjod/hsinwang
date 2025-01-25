@@ -6,12 +6,13 @@ function InfoAccordion() {
   const [questions, setQuestions] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 
   useEffect(() => {
     const controller = new AbortController() // 使用 AbortController 管理請求
     const signal = controller.signal
 
-    fetch('http://127.0.0.1:8000/api/QA/questions/', { signal })
+    fetch(`${API_BASE_URL}/api/QA/questions/`, { signal })
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok')

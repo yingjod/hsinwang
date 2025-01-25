@@ -8,11 +8,12 @@ const ProductPage = ({ products }) => {
   const [product, setProduct] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 
   useEffect(() => {
 
     axios
-      .get(`http://localhost:8000/api/product/${category}/${productId}`)  // 動態路徑
+      .get(`${API_BASE_URL}/api/product/${category}/${productId}`)  // 動態路徑
       .then((response) => {
         console.log(response.data)
         setProduct(response.data)  // 假設 API 返回商品資料

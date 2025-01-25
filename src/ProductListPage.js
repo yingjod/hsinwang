@@ -8,8 +8,8 @@ function ProductPage() {
   const [breads, setBreads] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 
-  // 通用的 fetch 函數
   const fetchData = (url, setData, controller) => {
     return fetch(url, { signal: controller.signal })
       .then((response) => {
@@ -35,8 +35,8 @@ function ProductPage() {
 
     // 同時發送兩個請求，並且當兩個都完成時再設置 loading = false
     Promise.all([
-      fetchData('http://127.0.0.1:8000/api/product/cake/', setCakes, controllerCakes),
-      fetchData('http://127.0.0.1:8000/api/product/breads/', setBreads, controllerBreads),
+      fetchData(`${API_BASE_URL}/api/product/cake/`, setCakes, controllerCakes),
+      fetchData(`${API_BASE_URL}/api/product/breads/`, setBreads, controllerBreads),
     ])
       .then(() => {
         setLoading(false)  // 當兩個請求都完成後設置 loading 為 false
