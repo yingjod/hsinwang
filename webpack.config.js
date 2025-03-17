@@ -2,7 +2,6 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const Dotenv = require('dotenv-webpack')
-const webpack = require('webpack')
 
 console.log('API Base URL in config: ', process.env.REACT_APP_API_BASE_URL)
 console.log("Environment variables from process.env:", process.env),
@@ -58,9 +57,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'style.css',
     }),
-    new Dotenv(),
-    new webpack.DefinePlugin({
-      'process.env.REACT_APP_API_BASE_URL': JSON.stringify(process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000'),
-    })
+    new Dotenv()
   ],
 }
