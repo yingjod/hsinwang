@@ -2,6 +2,10 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const Dotenv = require('dotenv-webpack')
+const webpack = require('webpack')
+
+console.log('API Base URL in config: ', process.env.REACT_APP_API_BASE_URL)
+console.log("Environment variables from process.env:", process.env),
 
 module.exports = {
   entry: './src/index.js',  // 指定你的進入點文件
@@ -9,7 +13,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),  // 指定輸出目錄
     filename: 'bundle.js',  // 輸出的檔案名稱
     clean: true,
-    publicPath: '/', 
+    publicPath: '/',
   },
   mode: 'development', // 可以設為 'development' 或 'production'
   module: {
@@ -26,7 +30,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i, 
+        test: /\.(png|jpe?g|gif|svg)$/i,
         type: 'asset/resource',  // 使用 Webpack 5 的資源模塊
         generator: {
           filename: 'img/[name][ext]',   // 圖片輸出路徑
@@ -39,12 +43,13 @@ module.exports = {
       directory: path.join(__dirname, 'dist'),  // 指定靜態文件的資料夾
     },
     allowedHosts: 'all',// 禁用 Host header 檢查
-    host: '0.0.0.0', 
+    host: '0.0.0.0',
     port: 8080, // 開發伺服器執行的 port
     open: true, // 自動打開瀏覽器
     hot: true,
     historyApiFallback: true,  // 防止 SPA 路由錯誤
   },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html',  // 使用您自定義的 index.html 模板
@@ -53,6 +58,9 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'style.css',
     }),
-    new Dotenv()
+    new Dotenv(),
+    new webpack.DefinePlugin({
+      'process.env.REACT_APP_API_BASE_URL': JSON.stringify(process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000'),
+    })
   ],
 }
